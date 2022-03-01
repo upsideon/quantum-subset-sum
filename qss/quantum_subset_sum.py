@@ -41,7 +41,7 @@ class QuantumSubsetSum:
         # states will have significantly high measurement probabilities after a number of iterations
         # equal to the square root of the number of subsets. In practice, it may be less, but this
         # number mitigates the worse case scenario.
-        self.num_grover_iterations = int(np.sqrt(2**self.num_values))
+        self.num_grover_iterations = int(np.sqrt(2 ** self.num_values))
 
         # An index qubit is created for each input value, including the target sum.
         num_indices = self.num_values + 1
@@ -56,7 +56,6 @@ class QuantumSubsetSum:
         )
 
         self.counts = {}
-
 
     def encode_phase(self, normalized_value, index, qc):
         """
@@ -184,9 +183,7 @@ class QuantumSubsetSum:
 
         # Encoding values in phase of sum qubits resulting in a state which is a superposition
         # of all possible subset sums and their corresponding indices.
-        qpe_gate = self.encode_values_in_phase(
-            normalized_values, normalized_target_sum
-        )
+        qpe_gate = self.encode_values_in_phase(normalized_values, normalized_target_sum)
         self.qc.append(qpe_gate, self.sums[:] + self.indices[:])
 
         for _ in range(self.num_grover_iterations):
@@ -301,6 +298,7 @@ class QuantumSubsetSum:
 
         answer_subsets = self.process_measurements(counts)
         return answer_subsets
+
 
 def normalize(values):
     """

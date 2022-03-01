@@ -4,6 +4,7 @@ import numpy as np
 
 from qiskit import QuantumCircuit
 
+
 def iqft(num_qubits):
     """
     Returns a gate that applies the inverse quantum fourier transform.
