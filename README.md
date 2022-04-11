@@ -65,21 +65,21 @@ Unit tests can be executed by running:
 
 The implementation of this algorithm is based off concepts and techniques learned from the following resources:
 
-Daskin, Ammar. "A quantum approach to subset-sum and similar problems." [arXiv preprint arXiv:1707.08730](https://arxiv.org/pdf/1707.08730) (2017).
+* Daskin, Ammar. "A quantum approach to subset-sum and similar problems." [arXiv preprint arXiv:1707.08730](https://arxiv.org/pdf/1707.08730) (2017).
 
-Draper, Thomas G. "Addition on a quantum computer." [arXiv preprint quant-ph/0008033](https://arxiv.org/abs/quant-ph/0008033) (2000).
+* Draper, Thomas G. "Addition on a quantum computer." [arXiv preprint quant-ph/0008033](https://arxiv.org/abs/quant-ph/0008033) (2000).
 
-Gunter, David, and Toks Adedoyin. "Towards An Implementation of the Subset-sum Problem on the IBM Quantum Experience." [arXiv preprint arXiv:1912.03254](https://arxiv.org/pdf/1912.03254) (2019).
+* Gunter, David, and Toks Adedoyin. "Towards An Implementation of the Subset-sum Problem on the IBM Quantum Experience." [arXiv preprint arXiv:1912.03254](https://arxiv.org/pdf/1912.03254) (2019).
 
-Qiskit.org. 2022. Grover's Algorithm. <https://qiskit.org/textbook/ch-algorithms/grover.html> [Accessed 28 February 2022].
+* Qiskit.org. 2022. Grover's Algorithm. <https://qiskit.org/textbook/ch-algorithms/grover.html> [Accessed 28 February 2022].
 
-Qiskit.org. 2022. Phase Kickback. <https://qiskit.org/textbook/ch-gates/phase-kickback.html> [Accessed 28 February 2022].
+* Qiskit.org. 2022. Phase Kickback. <https://qiskit.org/textbook/ch-gates/phase-kickback.html> [Accessed 28 February 2022].
 
-Qiskit.org. 2022. Quantum Fourier Transform. <https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html> [Accessed 28 February 2022].
+* Qiskit.org. 2022. Quantum Fourier Transform. <https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html> [Accessed 28 February 2022].
 
-Qiskit.org. 2022. Quantum Phase Estimation. <https://qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html> [Accessed 28 February 2022].
+* Qiskit.org. 2022. Quantum Phase Estimation. <https://qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html> [Accessed 28 February 2022].
 
-Zheng, Qilin, et al. "Quantum algorithm and experimental demonstration for the subset sum problem." Science China Information Sciences 65.8 (2022): 1-14.
+* Zheng, Qilin, et al. "Quantum algorithm and experimental demonstration for the subset sum problem." Science China Information Sciences 65.8 (2022): 1-14.
 
 
 ## License
