@@ -84,4 +84,4 @@ The implementation of this algorithm is based off concepts and techniques learne
 
 ## License
 
-[MIT License](https://github.com/Qiskit/qiskit-terra/blob/main/LICENSE.txt)
+[MIT License](https://github.com/upsideon/quantum-subset-sum/blob/main/LICENSE.txt)
