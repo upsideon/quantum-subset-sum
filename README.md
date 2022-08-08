@@ -49,7 +49,7 @@ Executing the code in the section above within a simulator and extracting the me
 
 ![Measurement Counts](images/measurement_counts.png)
 
-The histogram displays two clear peaks with measurements corresponding to states `110110` and `101010`. The leftmost qubit in these states represents the target sum which has been encoded with a negative phase. It is present in all solution states as the negative target sum value cancels out the sums of subsets which add to the target sum. If we ignore the qubit representing the target sum, each of the qubits read from right to left tells us which elements from the input set as included in the solution subset. A `1` indicates that the element is present while a `0` indicates that the element is not present. Reading the states using this procedure gives us `[7, 8, 1]` and `[7, 9]`, which are the correct solutions.
+The histogram displays two clear peaks with measurements corresponding to states `110110` and `101010`. The leftmost qubit in these states represents the target sum which has been encoded with a negative phase. It is present in all solution states as the negative target sum value cancels out the sums of subsets which add to the target sum. If we ignore the qubit representing the target sum, each of the qubits read from right to left tells us which elements from the input set are included in the solution subset. A `1` indicates that the element is present while a `0` indicates that the element is not present. Reading the states using this procedure gives us `[7, 8, 1]` and `[7, 9]`, which are the correct solutions.
 
 ### IBM Quantum Computers
 
