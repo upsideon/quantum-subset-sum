@@ -7,6 +7,6 @@ setup(
     license="MIT",
     url="https://github.com/upsideon/quantum-subset-sum",
     packages=["qss"],
-    requires=["numpy", "qiskit"],
-    install_requires=["numpy", "qiskit"],
+    requires=["numpy", "qiskit", "qiskit_aer", "qiskit_ibm_runtime"],
+    install_requires=["numpy", "qiskit", "qiskit_aer", "qiskit_ibm_runtime"],
 )

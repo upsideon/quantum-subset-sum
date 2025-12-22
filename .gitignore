@@ -1,2 +1,4 @@
 *__pycache__*
 venv/
+build/
+quantum_subset_sum.egg-info/

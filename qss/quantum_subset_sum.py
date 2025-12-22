@@ -2,12 +2,10 @@
 
 import numpy as np
 
-from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
-from qiskit import Aer, assemble, transpile
-from qiskit import IBMQ
-from qiskit.assembler import disassemble
-from qiskit.execute_function import execute
-from qiskit.providers.ibmq.job import job_monitor
+from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+from qiskit.circuit.library import MCMT
 
 from .iqft import iqft
 
@@ -17,7 +15,7 @@ class QuantumSubsetSum:
     A representation of an instance of the quantum subset sum problem.
     """
 
-    def __init__(self, values, target_sum):
+    def __init__(self, values, target_sum, backend_name="ibm_marrakesh"):
         """
         Creates a new instance of the quantum subset sum problem.
 
@@ -30,6 +28,7 @@ class QuantumSubsetSum:
         """
         self.values = values
         self.target_sum = target_sum
+        self.backend_name = backend_name
 
         self.num_values = len(values)
 
@@ -119,13 +118,13 @@ class QuantumSubsetSum:
         # finding states significantly easier as the oracle does not change based on the target
         # sum.
         qc.x(self.sums)
-        qc.mct(self.sums, self.grover_output)
+        qc.mcx(self.sums, self.grover_output)
         qc.x(self.sums)
 
         # Filtering out the all zero sums with all zero indices.
         qc.x(self.sums)
         qc.x(self.indices)
-        qc.mct(self.sums[:] + self.indices[:], self.grover_output)
+        qc.mcx(self.sums[:] + self.indices[:], self.grover_output)
         qc.x(self.indices)
         qc.x(self.sums)
 
@@ -153,7 +152,7 @@ class QuantumSubsetSum:
         # Amplifying marked states and equivalently diminishing unmarked states.
         qc.x(self.sums)
         qc.x(self.indices)
-        qc.mct(self.sums[:] + self.indices[:], self.grover_output)
+        qc.mcx(self.sums[:] + self.indices[:], self.grover_output)
         qc.x(self.indices)
         qc.x(self.sums)
 
@@ -211,10 +210,9 @@ class QuantumSubsetSum:
         Returns:
             dict: A set of measurements and their frequencies.
         """
-        aer_sim = Aer.get_backend("aer_simulator")
-        transpiled = transpile(qc, aer_sim)
-        qobj = assemble(transpiled)
-        result = aer_sim.run(qobj).result()
+        simulator = AerSimulator()
+        transpiled = transpile(qc, simulator)
+        result = simulator.run(transpiled).result()
         counts = result.get_counts()
         self.counts = counts
         return counts
@@ -226,18 +224,15 @@ class QuantumSubsetSum:
         Returns:
             dict: A set of measurements and their frequencies.
         """
-        IBMQ.load_account()
-        provider = IBMQ.get_provider(hub="ibm-q", group="open", project="main")
-        backend = provider.get_backend("ibmq_bogota")
-
+        service = QiskitRuntimeService()
+        backend = service.backend(self.backend_name)
         transpiled = transpile(qc, backend)
-        qobj = assemble(transpiled)
-        circuits, _, _ = disassemble(qobj)
-        job = execute(circuits, backend=backend, shots=10)
-        job_monitor(job)
+        job = Sampler(backend).run([transpiled])
 
-        result = job.result()
-        counts = result.get_counts()
+        # The current method of retrieving measurement counts
+        # from PrimitiveResult is not immediately apparent:
+        # https://quantumcomputing.stackexchange.com/a/38783
+        counts = job.result()[0].data.c0.get_counts()
         self.counts = counts
         return counts
 
